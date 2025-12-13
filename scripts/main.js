@@ -1,6 +1,7 @@
-import { gameState } from "./gameState/gameState.js"
+//import { gameState } from "./gameState/gameState.js"
 import { renderBoard } from "./visuals/tileRenderer.js"
+import { Knight } from "./knight/knight.js";
 
 
-
-renderBoard();
+let knight = new Knight();
+renderBoard(knight);
