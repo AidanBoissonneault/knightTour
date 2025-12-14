@@ -20,8 +20,9 @@ export function renderBoard(knight) {
     renderTiles(knight);
 }
 
-export function renderTiles(knight) {
+export function renderTiles() {
     let hasNextMoves = false;
+    let counter = 0; //counter for z-index
     gameState.tileMap.forEach(col => {
         col.forEach(tile => {
             const existingDocumentId = document.getElementById(`tileX${tile.x}Y${tile.y}`);
@@ -30,24 +31,26 @@ export function renderTiles(knight) {
                     <div class="tile"
                         style="--x:${tile.visual.offsetX}; --y:${tile.visual.offsetY};
                         --sizeX:${visualTileDimensions.sizeX}; --sizeY:${visualTileDimensions.sizeY};
-                        --colorScheme:${tile.visual.colorScheme}; --colorSchemeSecondary:${tile.visual.colorSchemeSecondary}"
+                        --colorScheme:${tile.visual.colorScheme}; --colorSchemeSecondary:${tile.visual.colorSchemeSecondary};
+                        z-index: ${counter}"
                         data-xLogical="${tile.x}" 
                         data-yLogical="${tile.y}" 
                         id="tileX${tile.x}Y${tile.y}"
                     </div>
-                    `);
+                `);
+                counter ++;    
 
                 tile.visual.documentId = document.getElementById(`tileX${tile.x}Y${tile.y}`);
             } else {
                 tile.visual.documentId.classList.remove("next-move"); //resets the next move if its not generating a tile
             }
-            hasNextMoves = checkNextMove(knight, tile, hasNextMoves);
+            hasNextMoves = checkNextMove(tile, hasNextMoves);
             /*tile.visual.documentId.addEventListener("click", () => {
                 knight.move(tile.x, tile.y);
             }); moved to nextMoves.js */
         });
     });
-    gameState.tileMap[knight.x][knight.y].state = tileState.VISITING;
+    gameState.tileMap[gameState.knight.x][gameState.knight.y].state = tileState.VISITING;
 
     if (!hasNextMoves) {
         setRemainingTilesFail();

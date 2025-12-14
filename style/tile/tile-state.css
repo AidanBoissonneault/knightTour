@@ -1,3 +1,5 @@
+
+/* player is visiting a tile */
 .tile.visiting {
     transform: translateY(-20px);
 }
@@ -14,7 +16,7 @@
 }
 
 
-
+/* tile is a next possible move */
 .tile.next-move {
     transform: translateY(-5px);
 }
@@ -31,14 +33,22 @@
     background-color: #8266ff83;
 }
 
-
+/* tile after the user fails the game */
 .tile.failed {
     transform: translate(calc(var(--movedX) * 1px), calc(var(--movedY) * 1px));
 
     transition: 
-                transform 1s ease-out;
+                transform calc(var(--duration) * 1s) ease-out;
 }
 
 .tile.failed::after {
     background-color: #ff323281;
+}
+
+/* repeat of visited, using so the tile isnt set to a "VISITED" state during fall */
+.tile.failed-falling {
+    transform: translate(calc(var(--movedX) * 1px), calc((var(--movedY) + 1500) * 1px));;
+
+    transition:
+                transform 4s ease-in;
 }
