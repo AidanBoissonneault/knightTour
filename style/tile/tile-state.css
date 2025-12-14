@@ -45,10 +45,17 @@
     background-color: #ff323281;
 }
 
-/* repeat of visited, using so the tile isnt set to a "VISITED" state during fall */
+/* slight modification of falling to include a fall from that position.*/
 .tile.failed-falling {
     transform: translate(calc(var(--movedX) * 1px), calc((var(--movedY) + 1500) * 1px));;
 
     transition:
                 transform 4s ease-in;
+}
+
+.tile.failed-falling::after {
+    background-color: #530d0d81;
+
+    transition:
+                background-color 1s ease-in;
 }
