@@ -1,5 +1,5 @@
 import { VisualTile } from "../visuals/tileVisual.js";
-import { checkWin } from "../gameState/winGame.js";
+import { checkWin, winGame } from "../gameState/winGame.js";
 
 export const tileState = Object.freeze({
     UNVISITED: 0,
@@ -56,7 +56,7 @@ export class Tile {
         if (nextState === tileState.VISITING && this.#state === tileState.UNVISITED) {
             console.log("visted a new tile");
             if (checkWin(this.x, this.y))
-                alert("You win!");
+                winGame();
         }
     }
 }

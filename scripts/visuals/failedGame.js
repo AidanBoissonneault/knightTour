@@ -22,7 +22,7 @@ export function setRemainingTilesFail() {
     });
 }
 
-export async function removeFailedTiles() {
+export function removeFailedTiles() {
     const failedTiles = document.querySelectorAll(".failed");
     if (!failedTiles) return;
 

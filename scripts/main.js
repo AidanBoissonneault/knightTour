@@ -1,8 +1,3 @@
-//import { gameState } from "./gameState/gameState.js"
-import { renderBoard } from "./visuals/tileRenderer.js";
-import { addRulesBox } from "./eventHandlers/rules.js";
-import { addUndoEventListener } from "./eventHandlers/undoButton.js";
+import { GameController } from "./gameState/gameController.js";
 
-addRulesBox();
-renderBoard();
-addUndoEventListener();
+GameController.startGame();

@@ -3,6 +3,7 @@ import { gameState } from "../gameState/gameState.js";
 import { tileState } from "../tileLogic/tile.js";
 import { renderTiles } from "../visuals/tileRenderer.js";
 import { removeFailedTiles } from "../visuals/failedGame.js";
+import { endGame } from "../gameState/loseGame.js";
 
 export const knightMoveReference = [[2, 1], [2, -1], [-2, 1], [-2, -1], [1, 2], [1, -2], [-1, 2], [-1, -2]];
 
@@ -13,6 +14,8 @@ export class Knight {
     #previousPositions = [];
 
     constructor(x, y) {
+        if (x >= gameState.boardSize) throw new Error(`x must be within the board size (0-${gameState.boardSize-1})`);
+        if (y >= gameState.boardSize) throw new Error(`y must be within the board size (0-${gameState.boardSize-1})`);
         this.#position = { x, y };
         this.#visual = new VisualKnight(x, y);
     }
@@ -59,7 +62,11 @@ export class Knight {
                 this.#visual.move(x, y);
                 console.log(`Moved to X: ${x}, Y:${y}`);
                 gameState.tileMap[x][y].state = tileState.VISITING;
-                renderTiles(this);
+                let lostGame = renderTiles();
+
+                if (!lostGame)
+                    endGame();
+
                 return;
             }
         }

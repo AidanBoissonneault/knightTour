@@ -3,12 +3,20 @@ import { generateMap } from "../tileLogic/gridGenerator.js";
 import { visualTileDimensions } from "./tileVisual.js";
 import { tileState } from "../tileLogic/tile.js";
 import { checkNextMove } from "./nextMoves.js";
-import { setRemainingTilesFail } from "./failedGame.js";
+
+export function resetBoard() {
+    const boardId = "board";
+    const board = document.getElementById(boardId);
+    if (!board) throw new Error(`${boardId} id in the document does not exist`);
+    board.innerHTML =   `<div id="knight">
+                            <img src="./assets/knight.png" alt="" id="knight-image">
+                        </div>`;
+}
 
 export function renderBoard() {
-    if (gameState.tileMap == null) {
+    //if (gameState.tileMap == null) {
         gameState.tileMap = generateMap(gameState.boardSize);
-    }
+    //}
 
     const boardId = "board";
     const board = document.getElementById(boardId);
@@ -52,7 +60,5 @@ export function renderTiles() {
     });
     gameState.tileMap[gameState.knight.x][gameState.knight.y].state = tileState.VISITING;
 
-    if (!hasNextMoves) {
-        setRemainingTilesFail();
-    }
+    return hasNextMoves;
 }

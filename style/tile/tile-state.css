@@ -45,7 +45,6 @@
 /* tile after the user fails the game */
 .tile.failed {
     transform: translate(calc(var(--movedX) * 1px), calc(var(--movedY) * 1px));
-
     transition: 
                 transform calc(var(--duration) * 1s) ease-out;
 }
@@ -57,14 +56,12 @@
 /* slight modification of falling to include a fall from that position.*/
 .tile.failed-falling {
     transform: translate(calc(var(--movedX) * 1px), calc((var(--movedY) + 1500) * 1px));;
-
     transition:
                 transform 4s ease-in;
 }
 
 .tile.failed-falling::after {
     background-color: #530d0d81;
-
     transition:
                 background-color 1s ease-in;
 }

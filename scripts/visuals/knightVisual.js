@@ -41,9 +41,12 @@ export class VisualKnight {
     }
 
     // trigger jump (restart animation)
-    this.#imageDocumentId.classList.remove("jump");
+    const jump = "jump"; //stores the class associated with jumping forward
+    const jumpReverse = "jump-reverse"; //stores the class associated with jumping backwards
+    const jumpClass = isReversed ? jumpReverse : jump;
+    this.#imageDocumentId.classList.remove(jumpReverse, jump);
     void this.#imageDocumentId.offsetWidth; // force reflow
-    this.#imageDocumentId.classList.add("jump");
+    this.#imageDocumentId.classList.add(jumpClass);
 
     // update position
     this.#position.x = x;

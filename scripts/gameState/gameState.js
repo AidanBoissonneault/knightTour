@@ -1,9 +1,8 @@
-import { generateMap } from "../tileLogic/gridGenerator.js"
-import { Knight } from "../knight/knight.js";
 
+// gameState is loaded in gameController.js
 export const gameState = {
-    boardSize: 8, // 5 is min smallest knights tour
-    tileMap: null,
+    boardSize: null, // 5 is min smallest knights tour
+    tileMap: null, // stores a 2d array of tiles which is the board
 
-    knight: new Knight(0, 0) //x, y pass in.
+    knight: null //x, y pass in.
 };
