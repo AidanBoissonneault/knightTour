@@ -8,11 +8,11 @@ export class VisualKnight {
     #documentId;
     #imageDocumentId;
 
-    constructor() {
+    constructor(x, y) {
         this.#documentId = document.getElementById("knight");
         this.#imageDocumentId = document.getElementById("knight-image");
-        this.#documentId.style.setProperty("--x", 0);
-        this.#documentId.style.setProperty("--y", + VISUAL_KNIGHT_VERTICAL_OFFSET);
+        this.#documentId.style.setProperty("--x", visualTileDimensions.sizeX * x);
+        this.#documentId.style.setProperty("--y", visualTileDimensions.sizeY * y + VISUAL_KNIGHT_VERTICAL_OFFSET);
     }
 
     get x() {
@@ -27,12 +27,16 @@ export class VisualKnight {
         return this.#documentId;
     }
 
-    move(x, y) {
+    move(x, y, isReversed = false) {
     const dx = x - this.#position.x;
 
     // facing logic
     if (dx !== 0) {
-        const facing = dx > 0 ? "0deg" : "180deg";
+        let left = "180deg";
+        let right = "0deg";
+
+        if (isReversed) [left, right] = [right, left];
+        const facing = dx > 0 ? right : left;
         this.#documentId.style.setProperty("--facing", facing);
     }
 

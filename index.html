@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="./style/body/font.css">
     <link rel="stylesheet" href="./style/body/body.css">
 
+    <link rel="stylesheet" href="./style/buttons-and-expanders/rules.css">
+
     <link rel="stylesheet" href="./style/tile/tile.css">
     <link rel="stylesheet" href="./style/tile/tile-state.css">
 
@@ -18,11 +20,16 @@
 
     <link rel="stylesheet" href="./style/generalContainers/containers.css">
 
+    <!-- small utility css -->
+     <link rel="stylesheet" href="./style/utilities/no-display.css">
+
     <script type="module" src="./scripts/main.js" defer></script>
 </head>
 <body class="centered-flex-container">
     <div class="fixed-container zero-position title">
-        <h1>Knights Tour</h1>
+            <h1>Knights Tour</h1>
+        <div id="expand-box"></div>
+        <button id="undo-button">UNDO</button>
     </div>
 
     <div class="inner-container">

@@ -33,7 +33,9 @@ export class Tile {
     }
 
     set state(nextState) {
-        if ( this.#state !== tileState.UNVISITED && this.#state !== tileState.VISITING ) throw new Error("You can only move to an unvisited tile");
+        if ( this.#state !== tileState.UNVISITED && this.#state !== tileState.VISITING && 
+            !(nextState === tileState.UNVISITED && this.#state === tileState.VISITED) &&
+            !(nextState === tileState.VISITING && this.#state === tileState.VISITED)) throw new Error("You can only move to an unvisited tile");
         if ( nextState == null ) throw new Error("A state cannot be null/undefined");
         if ( nextState !== tileState.UNVISITED && 
             nextState !== tileState.VISITING && 

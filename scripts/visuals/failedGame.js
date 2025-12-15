@@ -10,12 +10,24 @@ export function setRemainingTilesFail() {
 
                 explodeElement(tile, theDelay);
                 tile.visual.documentId.classList.add("failed");
+
                 tile.visual.documentId.addEventListener("transitionstart", async () => {
                     await delay(theDelay * 1000);
-                    tile.visual.documentId.classList.add("failed-falling");
-                });
+
+                    if (tile.visual.documentId.classList.contains("failed")) //checks in case the failed type was destructed during the delay
+                        tile.visual.documentId.classList.add("failed-falling");
+                }, { once: true } );
             }
         });
+    });
+}
+
+export async function removeFailedTiles() {
+    const failedTiles = document.querySelectorAll(".failed");
+    if (!failedTiles) return;
+
+    failedTiles.forEach(failedTile => {
+        failedTile.classList.remove("failed", "failed-falling");
     });
 }
 

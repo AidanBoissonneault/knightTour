@@ -15,6 +15,15 @@
                 transform 2s ease-in;
 }
 
+/* if the tile is a target */
+.tile.target {
+    transform: translateY(-10px);
+}
+
+.tile.target::after {
+    background-color: #c4611fec;
+}
+
 
 /* tile is a next possible move */
 .tile.next-move {

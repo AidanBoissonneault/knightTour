@@ -5,7 +5,7 @@ import { tileState } from "../tileLogic/tile.js";
 import { checkNextMove } from "./nextMoves.js";
 import { setRemainingTilesFail } from "./failedGame.js";
 
-export function renderBoard(knight) {
+export function renderBoard() {
     if (gameState.tileMap == null) {
         gameState.tileMap = generateMap(gameState.boardSize);
     }
@@ -17,7 +17,7 @@ export function renderBoard(knight) {
     board.style.width = `${gameState.boardSize * visualTileDimensions.sizeX}px`;
     board.style.height = `${gameState.boardSize * visualTileDimensions.sizeY}px`;
 
-    renderTiles(knight);
+    renderTiles();
 }
 
 export function renderTiles() {

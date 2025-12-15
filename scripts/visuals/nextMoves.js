@@ -14,6 +14,7 @@ export function checkNextMove(tile, returnState) {
     if (isInMoves(tile)) {
         tile.visual.documentId.classList.add("next-move");
 
+        tile.visual.documentId.removeEventListener("click", moveTheKnight);
         tile.visual.documentId.addEventListener("click", moveTheKnight, { once: true });
 
         returnState = true;

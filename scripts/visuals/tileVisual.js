@@ -91,7 +91,7 @@ export class VisualTile {
             throw new Error("The state must be a valid state");
         this.#state = nextState;
 
-        this.#documentId.classList.remove("visiting", "visited");
+        this.#documentId.classList.remove("visiting", "visited", "target");
         switch(this.#state) {
             case tileState.VISITING:
                 this.#documentId.classList.add("visiting");
