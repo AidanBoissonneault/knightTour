@@ -19,3 +19,10 @@ export async function winGame() {
     await loadPageFragment("overlay-screens/win.html", "overlay-screen-container");
     addWinScreenEventListeners();
 }
+
+export function simplifiedCheckWin() {
+    const visitedTiles = document.querySelectorAll(".visited, .visiting");
+    if (visitedTiles.length >= gameState.boardSize ** 2)
+        return true;
+    return false;
+}
