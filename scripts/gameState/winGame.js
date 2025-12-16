@@ -20,6 +20,7 @@ export async function winGame() {
     addWinScreenEventListeners();
 }
 
+//will change all current win implementation to this in the future
 export function simplifiedCheckWin() {
     const visitedTiles = document.querySelectorAll(".visited, .visiting");
     if (visitedTiles.length >= gameState.boardSize ** 2)

@@ -8,6 +8,7 @@ import { hideOverlayScreen } from "./removeOverlayScreen.js";
 export class GameController {
 
     static #boardSizeStarter = 5;
+    static #madeEventListeners = false;
 
     static startGame() {
         //reset
@@ -35,8 +36,11 @@ export class GameController {
         renderBoard();
 
         //menu controlling
-        addRulesBox();
-        addUndoEventListener();
+        if (!this.#madeEventListeners) {
+            this.#madeEventListeners = true;
+            addRulesBox();
+            addUndoEventListener();
+        }
 
         hideOverlayScreen();
     }

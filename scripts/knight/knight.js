@@ -38,7 +38,8 @@ export class Knight {
     }
 
     move(x, y) {
-        if (x < 0 || x >= gameState.boardSize ||
+        if (
+            x < 0 || x >= gameState.boardSize ||
             y < 0 || y >= gameState.boardSize
         ) {
             throw new Error("The knight must move in the board");
@@ -47,13 +48,15 @@ export class Knight {
             throw new Error("The knight must move to an unvisted square");
 
         for (const [dx, dy] of knightMoveReference) {
-            if (this.#position.x + dx === x &&
-                this.#position.y + dy === y) {
+            if (
+                this.#position.x + dx === x &&
+                this.#position.y + dy === y
+            ) {
 
                 this.#previousPositions.push({ 
                     x: this.#position.x, 
                     y: this.#position.y 
-                }); // add the current move to the previous moves array before leaving
+                }); // add the current position to the previous moves array before leaving
 
                 gameState.tileMap[this.#position.x][this.#position.y].state = tileState.VISITED;
 
@@ -70,7 +73,7 @@ export class Knight {
                 return;
             }
         }
-        //throw new Error("The move was not within knights reach");
+        throw new Error("The move was not within knights reach");
     }
 
     undo() {
@@ -79,17 +82,15 @@ export class Knight {
         const current = { ...this.#position };
         const previous = this.#previousPositions.pop();
 
-        // reset current tile
         gameState.tileMap[current.x][current.y].state = tileState.UNVISITED;
 
-        // move knight WITHOUT validation or history mutation
+        // non-validated move
         this.#position.x = previous.x;
         this.#position.y = previous.y;
 
         const REVERSED = true;
         this.#visual.move(previous.x, previous.y, REVERSED);
 
-        // restore visiting state
         gameState.tileMap[previous.x][previous.y].state = tileState.VISITING;
 
         renderTiles();

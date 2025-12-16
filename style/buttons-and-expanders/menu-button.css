@@ -1,0 +1,48 @@
+.menu-button {
+    position: relative;
+    width: 90%;
+    height: 50px;
+    margin: 10px;
+
+    border-radius: 12px;
+    background-color: #ccc;
+}
+
+.menu-button:hover {
+    background-color: #bbb;
+}
+
+.menu-button::before {
+    position: absolute;
+    inset: 0;
+
+    content: var(--content);
+    font-family: endless-boss-battle;
+    font-size: 20px;
+    padding: 15px;
+
+    background-color: #eee;
+
+    border-radius: 12px;
+
+    transform: 
+                translateY(-10px);
+
+    transition: 
+                transform 0.075s ease,
+                background-color 0.1s ease;
+}
+
+.menu-button:hover::before {
+    background-color: #fff;
+
+    transform: 
+                translateY(-12px);
+}
+
+.menu-button:active::before {
+    background-color: #ddd;
+
+    transform: 
+                translateY(-1px);
+}
