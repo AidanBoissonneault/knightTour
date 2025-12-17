@@ -1,7 +1,7 @@
 import { gameState } from "./gameState.js";
 import { tileState } from "../tileLogic/tile.js";
 import { loadPageFragment } from "../utilities/loadPageFragment.js";
-import { addWinScreenEventListeners } from "../eventHandlers/winScreen.js";
+import { gameControl } from "../main.js";
 
 export function checkWin(skipX, skipY) {
     for (const column of gameState.tileMap) {
@@ -17,7 +17,8 @@ export function checkWin(skipX, skipY) {
 
 export async function winGame() {
     await loadPageFragment("overlay-screens/win.html", "overlay-screen-container");
-    addWinScreenEventListeners();
+    //addWinScreenEventListeners(); old
+    gameControl.mode.createRelevantWinButtons();
 }
 
 //will change all current win implementation to this in the future

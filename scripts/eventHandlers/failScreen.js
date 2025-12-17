@@ -1,4 +1,4 @@
-import { GameController } from "../gameState/gameController.js";
+import { gameControl } from "../main.js";
 
 export function addFailScreenEventListeners() {
     const tryAgainId = "try-again-button";
@@ -6,6 +6,6 @@ export function addFailScreenEventListeners() {
     if (!tryAgain) throw new Error(`cannot add event handler to non existent button ${tryAgainId}`);
 
     tryAgain.addEventListener("click", () => {
-        GameController.startGame();
+        gameControl.startGame();
     });
 }

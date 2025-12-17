@@ -5,32 +5,32 @@ import { addUndoEventListener } from "../eventHandlers/undoButton.js"
 import { Knight } from "../knight/knight.js";
 import { hideOverlayScreen } from "./removeOverlayScreen.js";
 
+import { StandardMode } from "./gameModes/standardMode.js";
+
+import { RandomStartModifier } from "./gameModes/RandomStartModifier.js";
+
 export class GameController {
 
-    static #boardSizeStarter = 5;
-    static #madeEventListeners = false;
+    #madeEventListeners = false;
+    #mode = new StandardMode(new RandomStartModifier());
 
-    static startGame() {
+    get mode() {
+        return this.#mode;
+    }
+
+    startGame() {
         //reset
         gameState.tileMap = null;
         gameState.knight = null;
 
         //creates game
-        gameState.boardSize = this.#boardSizeStarter;
+        gameState.boardSize = this.#mode.startingBoardSize;
 
         resetBoard();
 
-        const startingX =
-            this.#boardSizeStarter > 5 ?
-            Math.floor(Math.random() * gameState.boardSize) :
-            0;
-        const startingY = 
-            this.#boardSizeStarter > 5 ?
-            Math.floor(Math.random() * gameState.boardSize) :
-            0;
         gameState.knight = new Knight(
-            startingX,
-            startingY
+            this.#mode.startingX,
+            this.#mode.startingY
         );
         
         renderBoard();
@@ -43,9 +43,5 @@ export class GameController {
         }
 
         hideOverlayScreen();
-    }
-
-    static incrementBoardSize() {
-        this.#boardSizeStarter++;
     }
 }

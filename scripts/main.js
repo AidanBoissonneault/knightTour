@@ -1,3 +1,4 @@
 import { GameController } from "./gameState/gameController.js";
 
-GameController.startGame();
+export var gameControl = new GameController();
+gameControl.startGame();

@@ -6,6 +6,15 @@
 
     border-radius: 12px;
     background-color: #ccc;
+
+    border:
+                4px
+                black
+                solid;
+    
+    box-shadow:
+                4px 4px 3px #22222220, 
+                -1px -1px 3px #ffffff10;
 }
 
 .menu-button:hover {
@@ -13,6 +22,28 @@
 }
 
 .menu-button::before {
+    position: absolute;
+    content: "";
+    width: calc(100% - 24px);
+    height: 100%;
+    left: 10px; /* border-radius - (border-width of base / 2) */
+    top: 0px;
+    margin: 0;
+
+    border-left: 
+                2px 
+                black 
+                solid;
+    border-right: 
+                2px 
+                black 
+                solid;
+    border-radius: 2px;
+
+    background-color: #33333310;
+}
+
+.menu-button::after {
     position: absolute;
     inset: 0;
 
@@ -33,14 +64,14 @@
                 background-color 0.1s ease;
 }
 
-.menu-button:hover::before {
+.menu-button:hover::after {
     background-color: #fff;
 
     transform: 
                 translateY(-12px);
 }
 
-.menu-button:active::before {
+.menu-button:active::after {
     background-color: #ddd;
 
     transform: 

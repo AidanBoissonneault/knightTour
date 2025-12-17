@@ -1,6 +1,7 @@
 import { GameController } from "../gameState/gameController.js";
 import { addFailScreenEventListeners } from "./failScreen.js";
 
+//now unused
 export function addWinScreenEventListeners() {
     const incrementId = "increment-button";
     const increment = document.getElementById(incrementId);
