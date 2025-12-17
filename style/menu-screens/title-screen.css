@@ -18,6 +18,7 @@
 
 .title-text {
     font-size: 56px;
+    pointer-events: none;
 }
 
 .text-3d {

@@ -15,10 +15,33 @@
     box-shadow:
                 4px 4px 3px #22222220, 
                 -1px -1px 3px #ffffff10;
+    transition:
+                background-color 0.20s ease,
+                box-shadow 0.25s ease;
 }
 
 .menu-button:hover {
     background-color: #bbb;
+    box-shadow:
+                5px 5px 3px #22222235, 
+                -2px -2px 3px #ffffff15;
+    
+    cursor: pointer;
+}
+
+.menu-button:active {
+    box-shadow:
+                1px 1px 1px #22222210, 
+                -1px -1px 3px #ffffff05;
+    
+    cursor: pointer;
+}
+
+.menu-button:disabled {
+    box-shadow:
+                1px 1px 1px #22222210, 
+                -1px -1px 3px #ffffff05;
+    cursor: not-allowed;
 }
 
 .menu-button::before {
@@ -48,6 +71,8 @@
     inset: 0;
 
     content: var(--content);
+    color: initial;
+
     font-family: endless-boss-battle;
     font-size: 20px;
     padding: 15px;
@@ -61,7 +86,8 @@
 
     transition: 
                 transform 0.075s ease,
-                background-color 0.1s ease;
+                background-color 0.1s ease,
+                color 0.2s ease;
 }
 
 .menu-button:hover::after {
@@ -73,6 +99,14 @@
 
 .menu-button:active::after {
     background-color: #ddd;
+
+    transform: 
+                translateY(-1px);
+}
+
+.menu-button:disabled::after {
+    background-color: #ccc;
+    color: #444;
 
     transform: 
                 translateY(-1px);

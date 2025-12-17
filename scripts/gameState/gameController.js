@@ -4,11 +4,6 @@ import { addRulesBox } from "../eventHandlers/rules.js";
 import { addUndoEventListener } from "../eventHandlers/undoButton.js"
 import { Knight } from "../knight/knight.js";
 import { hideOverlayScreen } from "./removeOverlayScreen.js";
-
-import { StandardMode } from "./gameModes/standardMode.js";
-import { IncrementMode } from "./gameModes/incrementMode.js";
-
-import { RandomStartModifier } from "./gameModes/RandomStartModifier.js";
 import { setVisualTileDimensions } from "../visuals/tileVisual.js";
 
 

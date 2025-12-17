@@ -4,8 +4,8 @@ import { tileState } from "../tileLogic/tile.js";
 import { setVisualKnightVerticalOffset } from "./knightVisual.js";
 
 export const visualTileDimensions = {
-    sizeX: 85,
-    sizeY: 75,
+    sizeX: null,
+    sizeY: null,
 };
 
 export const visualTileDimensionsBase = Object.freeze({
