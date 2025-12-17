@@ -1,4 +1,5 @@
 import { GameMode } from "./gameMode.js";
+import { gameControl } from "../../main.js";
 
 // ----------------------------------------
 // Standard mode is an 8 x 8 with no 
@@ -7,7 +8,7 @@ import { GameMode } from "./gameMode.js";
 
 export class StandardMode extends GameMode {
 
-    constructor(modifier) {
+    constructor(modifier = null) {
         const boardSize = 8;
         super(boardSize, modifier);
         this.buttonHTML = 
@@ -18,22 +19,14 @@ export class StandardMode extends GameMode {
                             </button></div>`;
     }
 
-    get startingBoardSize() {
-        return super._boardSize;
-    }
-
-    get boardSize() {
-        return super._boardSize;
-    }
-
-    /** @override @protected */
+    /** @override*/
     createEventListeners() {
         const tryAgainId = "try-again-button";
         const tryAgain = document.getElementById(tryAgainId);
         if (!tryAgain) throw new Error(`cannot add event handler to non existent button ${tryAgainId}`);
         
         tryAgain.addEventListener("click", () => {
-            GameController.startGame();
+            gameControl.startGame();
         });
     }
 };

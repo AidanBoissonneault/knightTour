@@ -23,25 +23,14 @@
 
     <link rel="stylesheet" href="./style/generalContainers/containers.css">
 
+    <link rel="stylesheet" href="./style/menu-screens/title-screen.css">
+
     <!-- small utility css -->
      <link rel="stylesheet" href="./style/utilities/no-display.css">
 
     <script type="module" src="./scripts/main.js" defer></script>
 </head>
-<body class="centered-flex-container">
-    <div class="fixed-container zero-position title">
-            <h1>Knights Tour</h1>
-        <div id="expand-box"></div>
-        <div class="button-container"><button id="undo-button" class="menu-button" style="--content:'UNDO';"></button></div>
-    </div>
-
-    <div class="inner-container">
-        <div id="board">
-            <div id="knight">
-                <img src="./assets/knight.png" alt="" id="knight-image">
-            </div>
-        </div>
-    </div>
-    <div class="overlay-screen centered-flex-container" id="overlay-screen-container"></div>
+<body class="centered-flex-container" id="actual-body">
+    
 </body>
 </html>

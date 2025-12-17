@@ -1,0 +1,33 @@
+.title-screen-container {
+    width: 300px;
+    text-align: center;
+
+    padding: 64px;
+    border:
+            4px
+            black
+            solid;
+    border-radius: 12px;
+
+    background-color: #96dcf8;
+
+    box-shadow:
+                4px 4px 3px #22222220, 
+                -1px -1px 3px #ffffff10;
+}
+
+.title-text {
+    font-size: 56px;
+}
+
+.text-3d {
+    text-shadow: 
+                -1px -1px 3px #ffffff10,
+                1px 1px 0 #eee, 
+                2px 2px 0 #eee, 
+                3px 3px 0 #eee, 
+                4px 4px 0 #eee, 
+                5px 5px 0 #eee, 
+                6px 6px 0 #eee,
+                7px 7px 1px #22222220;
+}

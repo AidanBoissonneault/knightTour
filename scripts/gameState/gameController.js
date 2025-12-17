@@ -6,13 +6,19 @@ import { Knight } from "../knight/knight.js";
 import { hideOverlayScreen } from "./removeOverlayScreen.js";
 
 import { StandardMode } from "./gameModes/standardMode.js";
+import { IncrementMode } from "./gameModes/incrementMode.js";
 
 import { RandomStartModifier } from "./gameModes/RandomStartModifier.js";
+
 
 export class GameController {
 
     #madeEventListeners = false;
-    #mode = new StandardMode(new RandomStartModifier());
+    #mode = null;
+
+    constructor(mode) {
+        this.#mode = mode;
+    }
 
     get mode() {
         return this.#mode;
@@ -24,7 +30,7 @@ export class GameController {
         gameState.knight = null;
 
         //creates game
-        gameState.boardSize = this.#mode.startingBoardSize;
+        gameState.boardSize = this.#mode.boardSize;
 
         resetBoard();
 

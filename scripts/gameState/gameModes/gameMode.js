@@ -24,17 +24,14 @@ export class GameMode {
             this.modifier.boardSize = boardSize;
     }
 
-    /** @abstract */
-    get startingBoardSize() {
-        throw new Error("get startingBoardSize() must be overriden");
-    }
-
-    /** @protected */
-    get _boardSize() {
+    get boardSize() {
         return this.#boardSize;
     }
 
-    /** @override */
+    set _boardSize(boardSize) {
+        this.#boardSize = boardSize;
+    }
+
     get startingX() {
         if (this.modifier instanceof RandomStartModifier)
             return this.modifier.startingX;
@@ -42,7 +39,6 @@ export class GameMode {
         return 0;
     }
 
-    /** @override */
     get startingY() {
         if (this.modifier instanceof RandomStartModifier)
             return this.modifier.startingY;
@@ -59,13 +55,8 @@ export class GameMode {
         this.createEventListeners();
     }
 
-    /** @override */
+    /** @abstract */
     createEventListeners() {
         throw new Error("createEvenetListeners() must be overriden");
     }
 };
-
-/*
-<div class="button-container"><button id="increment-button" class="menu-button" style="--content:'INCREMENT';"></button></div>
-<div class="button-container"><button id="try-again-button" class="menu-button" style="--content:'REPLAY';"></button></div>
-*/

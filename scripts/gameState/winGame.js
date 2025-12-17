@@ -17,8 +17,7 @@ export function checkWin(skipX, skipY) {
 
 export async function winGame() {
     await loadPageFragment("overlay-screens/win.html", "overlay-screen-container");
-    //addWinScreenEventListeners(); old
-    gameControl.mode.createRelevantWinButtons();
+    gameControl.mode.createRelevantWinButtons("button-outer-container");
 }
 
 //will change all current win implementation to this in the future
