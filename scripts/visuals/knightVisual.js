@@ -1,8 +1,13 @@
-import { visualTileDimensions } from "./tileVisual.js";
+import { visualTileDimensions, visualTileDimensionsBase } from "./tileVisual.js";
 import { gameState } from "../gameState/gameState.js";
 import { forceReflow } from "../utilities/forceReflow.js";
 
-const VISUAL_KNIGHT_VERTICAL_OFFSET = -40;
+let visualKnightVerticalOffset = -40; //amount raised from the tile default
+
+export function setVisualKnightVerticalOffset(value) {
+    visualKnightVerticalOffset = value;
+}
+
 export class VisualKnight {
     #position = { x: 0, y: 0 }
     #facing = 1; //1 = right, -1 = left
@@ -13,7 +18,10 @@ export class VisualKnight {
         this.#documentElement = document.getElementById("knight");
         this.#imageDocumentElement = document.getElementById("knight-image");
         this.#documentElement.style.setProperty("--x", visualTileDimensions.sizeX * x);
-        this.#documentElement.style.setProperty("--y", visualTileDimensions.sizeY * y + VISUAL_KNIGHT_VERTICAL_OFFSET);
+        this.#documentElement.style.setProperty("--y", visualTileDimensions.sizeY * y + visualKnightVerticalOffset);
+
+        const size = visualTileDimensions.sizeX;
+        this.#documentElement.style.setProperty("--size", size);
     }
 
     get x() {
@@ -59,7 +67,7 @@ export class VisualKnight {
         );
         this.#documentElement.style.setProperty(
             "--y",
-            visualTileDimensions.sizeY * y + VISUAL_KNIGHT_VERTICAL_OFFSET
+            visualTileDimensions.sizeY * y + visualKnightVerticalOffset
         );
     }
 }

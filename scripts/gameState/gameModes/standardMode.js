@@ -6,10 +6,10 @@ import { gameControl } from "../../main.js";
 // incrementation.
 // ----------------------------------------
 
+
 export class StandardMode extends GameMode {
 
-    constructor(modifier = null) {
-        const boardSize = 8;
+    constructor(modifier = null, boardSize = 8) {
         super(boardSize, modifier);
         this.buttonHTML = 
                             `<div class="button-container"><button 
@@ -30,3 +30,10 @@ export class StandardMode extends GameMode {
         });
     }
 };
+
+export class BigBoardMode extends StandardMode {
+    constructor(modifier = null) {
+        const boardSize = 16;
+        super(modifier, boardSize);
+    }
+}

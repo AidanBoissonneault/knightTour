@@ -3,19 +3,16 @@
     top: calc(var(--y) * 1px);
     left: calc(var(--x) * 1px);
 
-    width: 115px;
-    height: 115px;
-
-    transform: translate(
-        calc(-50% + (85px / 2)),
-        calc(-50% + (75px / 2))
-    );
+    width: calc(var(--size) * 1px);
+    height: calc(var(--size) * 1px);
 
     transition:
         top 0.45s ease,
         left 0.45s ease;
 
     z-index: 1000;
+
+    pointer-events: none;
 }
 
 #knight.face-left {

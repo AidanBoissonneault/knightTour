@@ -1,7 +1,7 @@
 
 /* player is visiting a tile */
 .tile.visiting {
-    transform: translateY(-20px);
+    transform: translateY(-16%);
 }
 
 .tile.visiting::after {
@@ -17,7 +17,7 @@
 
 /* if the tile is a target */
 .tile.target {
-    transform: translateY(-10px);
+    transform: translateY(-8%);
 }
 
 .tile.target::after {
@@ -27,7 +27,7 @@
 
 /* tile is a next possible move */
 .tile.next-move {
-    transform: translateY(-5px);
+    transform: translateY(-4%);
 }
 
 .tile.next-move::after {
@@ -35,7 +35,7 @@
 }
 
 .tile.next-move:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8%);
 }
 
 .tile.next-move:hover::after {

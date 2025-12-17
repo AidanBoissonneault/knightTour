@@ -1,11 +1,40 @@
 import { Boolean } from "../utilities/booleanToggler.js";
 import { gameState } from "../gameState/gameState.js";
 import { tileState } from "../tileLogic/tile.js";
+import { setVisualKnightVerticalOffset } from "./knightVisual.js";
 
-export const visualTileDimensions = Object.freeze({
+export const visualTileDimensions = {
+    sizeX: 85,
+    sizeY: 75,
+};
+
+export const visualTileDimensionsBase = Object.freeze({
     sizeX: 85,
     sizeY: 75,
 });
+
+export function setVisualTileDimensions() {
+    visualTileDimensions.sizeX = visualTileDimensionsBase.sizeX;
+    visualTileDimensions.sizeY = visualTileDimensionsBase.sizeY;
+
+    const boardSize = gameState.boardSize;
+    const width = document.documentElement.clientWidth-20;
+    const height = document.documentElement.clientHeight-50;
+
+    const verticalScale = visualTileDimensionsBase.sizeY / visualTileDimensionsBase.sizeX;
+
+    if (boardSize * visualTileDimensions.sizeX > width) {
+        visualTileDimensions.sizeX = width / boardSize;
+        visualTileDimensions.sizeY = width / boardSize * verticalScale;
+    }
+    if (boardSize * visualTileDimensions.sizeY > height) {
+        visualTileDimensions.sizeX = height / boardSize;
+        visualTileDimensions.sizeY = height / boardSize * verticalScale;
+    }
+
+    const knightVerticalOffset = visualTileDimensions.sizeY / visualTileDimensionsBase.sizeY * -40;
+    setVisualKnightVerticalOffset(knightVerticalOffset);
+}
 
 const visualTileColors = Object.freeze({
     LIGHT: '#ddd',
