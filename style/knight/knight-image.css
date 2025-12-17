@@ -27,13 +27,13 @@
     }
     40% {
         transform: 
-                    translateY(-35px) 
+                    translateY(-45%) 
                     scale(0.95, 1.05)
                     rotateY(var(--facing));
     }
     70% {
         transform: 
-                    translateY(-45px) 
+                    translateY(-55%) 
                     scale(1.05, 0.95)
                     rotateY(var(--facing));
     }

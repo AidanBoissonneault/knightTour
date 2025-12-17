@@ -18,8 +18,13 @@ export function setVisualTileDimensions() {
     visualTileDimensions.sizeY = visualTileDimensionsBase.sizeY;
 
     const boardSize = gameState.boardSize;
-    const width = document.documentElement.clientWidth-20;
-    const height = document.documentElement.clientHeight;
+
+    const isDesktop = document.documentElement.clientWidth > 768;
+    const EXTRA_SPACE_FOR_UI_X = isDesktop ? -350 : 0;
+    const EXTRA_SPACE_FOR_UI_Y = isDesktop ? 0 : -300;
+
+    const width = document.documentElement.clientWidth- 50 + EXTRA_SPACE_FOR_UI_X;
+    const height = document.documentElement.clientHeight + EXTRA_SPACE_FOR_UI_Y;
 
     const verticalScale = visualTileDimensionsBase.sizeY / visualTileDimensionsBase.sizeX;
 

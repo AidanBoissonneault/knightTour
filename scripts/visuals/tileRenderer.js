@@ -31,6 +31,11 @@ export function renderBoard() {
 export function renderTiles() {
     let hasNextMoves = false;
     let counter = 0; //counter for z-index
+
+    const boardId = "board";
+    const board = document.getElementById(boardId);
+    if (!board) throw new Error(`${boardId} id in the document does not exist`);
+
     gameState.tileMap.forEach(col => {
         col.forEach(tile => {
             const existingDocumentId = document.getElementById(`tileX${tile.x}Y${tile.y}`);

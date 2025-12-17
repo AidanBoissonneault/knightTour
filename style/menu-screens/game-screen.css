@@ -1,0 +1,31 @@
+.ui-container {
+    inset: 0;
+    width: 280px;
+    height: 100%;
+
+    background-color: var(--ui__blue);
+    padding: 20px;
+
+    margin: 20px;
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 
+            4px
+            black
+            solid;
+    border-radius: 12px;
+
+    box-shadow:
+                4px 4px 3px #22222220, 
+                -1px -1px 3px #ffffff10;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+    .ui-container {
+        width: 100%;
+    }
+}

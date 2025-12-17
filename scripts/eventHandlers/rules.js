@@ -4,7 +4,7 @@ export function addRulesBox() {
     const documentId = "expand-box";
     const closedText = "RULES";
     const openText =  `
-                <h1>RULES</h1>
+                <h1 class="text-3d">RULES</h1>
                 <p id="rules-text">
                     The knight must land on each square exactly once.
                     <br>If the knight rules out of possible moves... 
