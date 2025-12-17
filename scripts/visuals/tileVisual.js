@@ -19,7 +19,7 @@ export function setVisualTileDimensions() {
 
     const boardSize = gameState.boardSize;
     const width = document.documentElement.clientWidth-20;
-    const height = document.documentElement.clientHeight-50;
+    const height = document.documentElement.clientHeight;
 
     const verticalScale = visualTileDimensionsBase.sizeY / visualTileDimensionsBase.sizeX;
 

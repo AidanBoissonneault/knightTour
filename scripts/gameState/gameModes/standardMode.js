@@ -37,3 +37,10 @@ export class BigBoardMode extends StandardMode {
         super(modifier, boardSize);
     }
 }
+
+export class GiantBoardMode extends StandardMode {
+    constructor(modifier = null) {
+        const boardSize = 32;
+        super(modifier, boardSize);
+    }
+}

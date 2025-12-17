@@ -1,7 +1,7 @@
 import { GameController } from "./gameState/gameController.js";
 import { loadPageFragment } from "./utilities/loadPageFragment.js";
 
-import { BigBoardMode, StandardMode } from "./gameState/gameModes/standardMode.js";
+import { BigBoardMode, GiantBoardMode, StandardMode } from "./gameState/gameModes/standardMode.js";
 import { IncrementMode } from "./gameState/gameModes/incrementMode.js";
 
 import { RandomStartModifier } from "./gameState/gameModes/RandomStartModifier.js";
@@ -17,6 +17,7 @@ async function startTitleScreen() {
     const incrementButton = document.getElementById("start-increment");
     const settingsButton = document.getElementById("start-settings");
     const bigBoardButton = document.getElementById("start-bigboard");
+    const giantBoardButton = document.getElementById("start-giantboard");
 
     const createGame = async () => {
         await loadPageFragment("game.html", "actual-body");
@@ -44,6 +45,12 @@ async function startTitleScreen() {
     if (!bigBoardButton) throw new Error("start big board game button must exist");
     bigBoardButton.addEventListener("click", () => {
         gameControl = new GameController(new BigBoardMode());
+        createGame();
+    });
+
+    if (!giantBoardButton) throw new Error("start giant board game button must exist");
+    giantBoardButton.addEventListener("click", () => {
+        gameControl = new GameController(new GiantBoardMode(new RandomStartModifier));
         createGame();
     });
 }
