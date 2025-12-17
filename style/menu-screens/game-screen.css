@@ -23,9 +23,17 @@
                 -1px -1px 3px #ffffff10;
 }
 
+#game-board {
+    align-items: center;
+}
+
 /* mobile */
 @media (max-width: 768px) {
     .ui-container {
         width: 100%;
+    }
+
+    #game-board {
+        align-items:start;
     }
 }
