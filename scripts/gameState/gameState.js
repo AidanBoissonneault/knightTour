@@ -10,5 +10,6 @@ export const gameState = {
     isMultiplayer: null,
     knight2: null,
 
-    currentTurn: null
+    currentTurn: null,
+    winner: null
 };

@@ -35,6 +35,7 @@ export class GameController {
         gameState.isMultiplayer = this.#mode.multiplayer;
         gameState.knight2 = null;
         gameState.currentTurn = null;
+        gameState.winner = null;
 
         //creates game
         gameState.boardSize = this.#mode.boardSize;

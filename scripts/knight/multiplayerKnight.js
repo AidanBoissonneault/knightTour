@@ -15,6 +15,11 @@ export class MultiplayerKnight extends Knight {
         this.#opponent = knight;
     }
 
+    get opponent() {
+        return this.#opponent;
+    }
+
+    /** @override */
     move(x, y) {
         if (gameState.currentTurn == this.#opponent) return; //throw new Error("It must be your turn to play");
         if (this.#opponent == null) throw new Error("The opponent must be set before making a move");
@@ -25,6 +30,7 @@ export class MultiplayerKnight extends Knight {
         if (this.x === this.#opponent.x &&
             this.y === this.#opponent.y
         ) {
+            gameState.winner = this;
             winGame();
         }
     }
