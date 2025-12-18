@@ -2,12 +2,13 @@ import { Knight } from "./knight.js";
 import { gameState } from "../gameState/gameState.js";
 import { renderTiles } from "../visuals/tileRenderer.js";
 import { winGame } from "../gameState/winGame.js";
+import { CountdownTimer } from "../utilities/time.js";
 
 export class MultiplayerKnight extends Knight {
     #opponent = null;
 
-    constructor(x, y, documentId = "knight", imageDocumentId = "knight-image") {
-        super(x, y, documentId, imageDocumentId);
+    constructor(x, y, documentId = "knight", imageDocumentId = "knight-image", timer = new CountdownTimer(180000 /* 3 minutes */)) {
+        super(x, y, documentId, imageDocumentId, timer);
     }
 
     set opponent(knight) {
@@ -25,6 +26,10 @@ export class MultiplayerKnight extends Knight {
         if (this.#opponent == null) throw new Error("The opponent must be set before making a move");
         super.move(x, y);
         gameState.currentTurn = this.#opponent;
+
+        //make the current timer the opponents timer and stop your own
+        this.timerHandler.stopVisualTimer();
+
         renderTiles();
 
         if (this.x === this.#opponent.x &&
@@ -32,6 +37,8 @@ export class MultiplayerKnight extends Knight {
         ) {
             gameState.winner = this;
             winGame();
+        } else {
+            this.opponent.timerHandler.startVisualTimer();
         }
     }
 }

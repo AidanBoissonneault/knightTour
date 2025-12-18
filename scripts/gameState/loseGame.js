@@ -1,4 +1,5 @@
 import { addFailScreenEventListeners } from "../eventHandlers/failScreen.js";
+import { stopTimerHandlers } from "../knight/stopTimerHandlers.js";
 import { loadPageFragment } from "../utilities/loadPageFragment.js";
 import { setRemainingTilesFail } from "../visuals/failedGame.js";
 import { gameState } from "./gameState.js";
@@ -12,6 +13,9 @@ export async function endGame() {
         winGame();
         return;
     }
+
+    //stop timer
+    stopTimerHandlers();
 
     setRemainingTilesFail();
     await loadPageFragment("overlay-screens/fail.html", "overlay-screen-container");

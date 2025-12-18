@@ -1,6 +1,7 @@
 import { visualTileDimensions, visualTileDimensionsBase } from "./tileVisual.js";
 import { gameState } from "../gameState/gameState.js";
 import { forceReflow } from "../utilities/forceReflow.js";
+import { TimerHandler } from "../utilities/time.js";
 
 let visualKnightVerticalOffset = -40; //amount raised from the tile default
 
@@ -10,11 +11,13 @@ export function setVisualKnightVerticalOffset(value) {
 
 export class VisualKnight {
     #position = { x: 0, y: 0 }
-    #facing = 1; //1 = right, -1 = left
     #documentElement;
     #imageDocumentElement;
 
-    constructor(x, y, documentId, imageDocumentId) {
+    #timer;
+    #visualTimerHandler;
+
+    constructor(x, y, documentId, imageDocumentId, timer) {
         this.#documentElement = document.getElementById(documentId);
         this.#imageDocumentElement = document.getElementById(imageDocumentId);
         this.#documentElement.style.setProperty("--x", visualTileDimensions.sizeX * x);
@@ -22,6 +25,9 @@ export class VisualKnight {
 
         const size = visualTileDimensions.sizeX;
         this.#documentElement.style.setProperty("--size", size);
+
+        this.#timer = timer;
+        this.#visualTimerHandler = new TimerHandler(timer);
     }
 
     get x() {
@@ -34,6 +40,10 @@ export class VisualKnight {
 
     get documentElement() {
         return this.#documentElement;
+    }
+
+    get visualTimerHandler() {
+        return this.#visualTimerHandler;
     }
 
     move(x, y, isReversed = false) {

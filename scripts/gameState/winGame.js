@@ -3,6 +3,7 @@ import { tileState } from "../tileLogic/tile.js";
 import { loadPageFragment } from "../utilities/loadPageFragment.js";
 import { gameControl } from "../main.js";
 import { setRemainingTilesFail } from "../visuals/failedGame.js";
+import { stopTimerHandlers } from "../knight/stopTimerHandlers.js";
 
 export function checkWin(skipX, skipY) {
     for (const column of gameState.tileMap) {
@@ -19,6 +20,9 @@ export function checkWin(skipX, skipY) {
 export async function winGame() {
     await loadPageFragment("overlay-screens/win.html", "overlay-screen-container");
     gameControl.mode.createRelevantWinButtons("button-outer-container");
+
+    //stop timer
+    stopTimerHandlers();
 
     if (gameState.isMultiplayer) {
         const winText = document.getElementById("win-text");

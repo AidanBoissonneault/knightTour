@@ -4,6 +4,7 @@ import { tileState } from "../tileLogic/tile.js";
 import { renderTiles } from "../visuals/tileRenderer.js";
 import { removeFailedTiles } from "../visuals/failedGame.js";
 import { endGame } from "../gameState/loseGame.js";
+import { Timer, TimerHandler } from "../utilities/time.js";
 
 export const knightMoveReference = [[2, 1], [2, -1], [-2, 1], [-2, -1], [1, 2], [1, -2], [-1, 2], [-1, -2]];
 
@@ -11,13 +12,18 @@ export class Knight {
     #position = { x: 0, y: 0 };
 
     #visual;
+    #timer;
+    #timerHandler;
     #previousPositions = [];
 
-    constructor(x, y, documentId = "knight", imageDocumentId = "knight-image") {
+    constructor(x, y, documentId = "knight", imageDocumentId = "knight-image", timer = new Timer()) {
         if (x >= gameState.boardSize) throw new Error(`x must be within the board size (0-${gameState.boardSize-1})`);
         if (y >= gameState.boardSize) throw new Error(`y must be within the board size (0-${gameState.boardSize-1})`);
         this.#position = { x, y };
-        this.#visual = new VisualKnight(x, y, documentId, imageDocumentId);
+        this.#timer = timer;
+
+        this.#visual = new VisualKnight(x, y, documentId, imageDocumentId, this.#timer);
+        this.#timerHandler = new TimerHandler(this.#timer);
     }
 
     get x() {
@@ -32,9 +38,8 @@ export class Knight {
         return this.#visual;
     }
 
-    move(position) {
-        if (position.x == null || position.y == null) throw new Error("position must be a position struct.");
-        this.move(position.x, position.y);
+    get timerHandler() {
+        return this.#timerHandler;
     }
 
     move(x, y) {

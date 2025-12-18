@@ -2,7 +2,7 @@ import { gameState } from "./gameState.js";
 import { renderBoard, resetBoard } from "../visuals/tileRenderer.js";
 
 import { addRulesBox } from "../eventHandlers/rules.js";
-import { addUndoEventListener } from "../eventHandlers/undoButton.js"
+import { addUndoEventListener, removeUndoEventListener } from "../eventHandlers/undoButton.js"
 import { addBackToMenuEventListener } from "../eventHandlers/backToMenuButton.js";
 import { addSettingsEventListener } from "../eventHandlers/settingsButton.js";
 
@@ -67,6 +67,7 @@ export class GameController {
             gameState.knight2.opponent = gameState.knight;      
         }
         gameState.currentTurn = gameState.knight;
+        gameState.currentTurn.timerHandler.startVisualTimer();
         
         renderBoard();
 
@@ -84,6 +85,7 @@ export class GameController {
         //remove elements of the UI not required for multiplayer
         if (gameState.isMultiplayer) {
             setMultiplayerMenu();
+            removeUndoEventListener(); //removes the keybind for undo
         }
     }
 }
