@@ -52,14 +52,14 @@ export class GameController {
         } else {
             const STARTING_TURN = true;
             gameState.knight = new MultiplayerKnight(
-                this.#mode.startingX,
-                this.#mode.startingY,
+                /*this.#mode.startingX*/1,
+                /*this.#mode.startingY*/0,
                 "knight",
                 "knight-image"
             )
             gameState.knight2 = new MultiplayerKnight(
-                this.#mode.boardSize-1,
-                this.#mode.boardSize-1,
+                /*this.#mode.boardSize-1*/6,
+                /*this.#mode.boardSize-1*/7,
                 "knight2",
                 "knight-image2"
             )

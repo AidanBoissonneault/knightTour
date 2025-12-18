@@ -1,7 +1,12 @@
 import { endGame } from "../gameState/loseGame.js";
 import { delay } from "./delay.js";
 
-
+/**
+ * TIMER CLASS
+ * base of all timer classes, 
+ * counts up from given point.
+ * use with a TimerHandler for simplified visual handling.
+ */
 export class Timer {
     _startTime = 0;
     _elapsed = 0;
@@ -93,6 +98,12 @@ export class CountdownTimer extends Timer {
     }
 }
 
+/**
+ * TIMER HANDLER
+ * manipulates a Timer object or one of its subclasses
+ * mainly used for rapidly updating a docuemntElement
+ * with the updated information from a Timer object.
+ */
 
 export class TimerHandler {
     #showVisual;

@@ -1,5 +1,11 @@
 import { addExpandBoxEventListeners } from "../utilities/expandBox.js";
 
+/**
+ * Uses the expandBox library ( by me )
+ * this function adds the text required
+ * for the rules in into an expandBox to documentId "expand-box"
+ */
+
 export function addRulesBox() {
     const documentId = "expand-box";
     const closedText = "RULES";

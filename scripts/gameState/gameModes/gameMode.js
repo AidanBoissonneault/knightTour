@@ -3,14 +3,18 @@ import { RandomStartModifier } from "./RandomStartModifier.js";
 
 /**
  * @abstract
+ * Used to modify the gameController and gameState based off the mode selected
  */
 export class GameMode {
 
     #boardSize;
-    modifier; //stores a modifier like random start mode
+    
     #multiplayer; //if the game is a multiplayer game (true / false)
 
-    /** @protected */
+    /** @type RandomStartModifier | null*/ 
+    modifier; //stores a modifier like random start mode
+
+    /** @protected @type string */
     buttonHTML;
 
     /** @abstract */
@@ -53,6 +57,10 @@ export class GameMode {
         return this.#multiplayer;
     }
 
+    /**
+     * uses the GameMode buttonHTML var (string) to input text into an element
+     * @param {string} containerId This is the id of the element buttonHTML is inserted.
+     */
     createRelevantWinButtons(containerId) {
         const element = document.getElementById(containerId);
         if (!element) throw new Error("containerId must link to a document ID");

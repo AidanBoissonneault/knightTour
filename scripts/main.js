@@ -6,9 +6,9 @@ import { createMainMenu } from "./menu-screens/main-menu.js";
 export var gameControl = null; //new GameController();
 
 export function makeGameController(controller) {
-    if (controller instanceof GameController)
-        gameControl = controller;
-    else throw new Error("controller must be a GameController");
+    if (!(controller instanceof GameController)) throw new Error("controller must be a GameController");
+    
+    gameControl = controller;
 }
 
 createMainMenu();

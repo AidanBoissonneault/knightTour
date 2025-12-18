@@ -27,7 +27,6 @@ export class VisualKnight {
         this.#documentElement.style.setProperty("--size", size);
 
         this.#timer = timer;
-        this.#visualTimerHandler = new TimerHandler(timer);
     }
 
     get x() {
