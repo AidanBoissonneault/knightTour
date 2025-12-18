@@ -8,9 +8,17 @@ export function resetBoard() {
     const boardId = "board";
     const board = document.getElementById(boardId);
     if (!board) throw new Error(`${boardId} id in the document does not exist`);
-    board.innerHTML =   `<div id="knight">
-                            <img src="./assets/knight.png" alt="" id="knight-image">
-                        </div>`;
+    if (!gameState.isMultiplayer)
+        board.innerHTML =   `<div id="knight" class="knight">
+                                <img src="./assets/knight.png" alt="" id="knight-image" class="knight-image">
+                            </div>`;
+    else
+        board.innerHTML =   `<div id="knight" class="knight">
+                                <img src="./assets/knight.png" alt="" id="knight-image" class="knight-image">
+                            </div>
+                            <div id="knight2" class="knight">
+                                <img src="./assets/dark-knight.png" alt="" id="knight-image2" class="knight-image">
+                            </div>`;
 }
 
 export function renderBoard() {
@@ -63,7 +71,8 @@ export function renderTiles() {
             }); moved to nextMoves.js */
         });
     });
-    gameState.tileMap[gameState.knight.x][gameState.knight.y].state = tileState.VISITING;
+    const activeKnight = gameState.currentTurn;
+    gameState.tileMap[activeKnight.x][activeKnight.y].state = tileState.VISITING;
 
     return hasNextMoves;
 }

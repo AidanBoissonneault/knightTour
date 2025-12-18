@@ -1,4 +1,4 @@
-#knight {
+.knight {
     position: absolute;
     top: calc(var(--y) * 1px);
     left: calc(var(--x) * 1px);
@@ -15,6 +15,6 @@
     pointer-events: none;
 }
 
-#knight.face-left {
+.knight.face-left {
     transform: rotateY(180deg);
 }

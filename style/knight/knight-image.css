@@ -1,5 +1,5 @@
 /* image layer */
-#knight-image {
+.knight-image {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -13,7 +13,7 @@
     z-index: 999002;
 }
 
-#knight-image.jump {
+.knight-image.jump {
     animation: knight-jump 0.45s ease;
 }
 
@@ -45,7 +45,7 @@
     }
 }
 
-#knight-image.jump-reverse {
+.knight-image.jump-reverse {
     animation: knight-jump-reverse 0.45s ease;
 }
 

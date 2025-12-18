@@ -1,4 +1,4 @@
-#knight::after {
+.knight::after {
     content: "";
     position: absolute;
 

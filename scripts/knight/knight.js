@@ -13,11 +13,11 @@ export class Knight {
     #visual;
     #previousPositions = [];
 
-    constructor(x, y) {
+    constructor(x, y, documentId = "knight", imageDocumentId = "knight-image") {
         if (x >= gameState.boardSize) throw new Error(`x must be within the board size (0-${gameState.boardSize-1})`);
         if (y >= gameState.boardSize) throw new Error(`y must be within the board size (0-${gameState.boardSize-1})`);
         this.#position = { x, y };
-        this.#visual = new VisualKnight(x, y);
+        this.#visual = new VisualKnight(x, y, documentId, imageDocumentId);
     }
 
     get x() {

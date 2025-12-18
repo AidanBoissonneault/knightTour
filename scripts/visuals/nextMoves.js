@@ -6,11 +6,13 @@ export function checkNextMove(tile, returnState) {
     if (! (tile instanceof Tile)) 
         throw new Error("tile must be of a Tile class");
     //add new next moves
-    const moveTheKnight = () => {
-        if (tile.state === tileState.VISITING) return;
-        if (tile.state !== tileState.UNVISITED) throw new Error("a knight cannot revisit a spot on the board");
-        gameState.knight.move(tile.x, tile.y); 
-    }
+    let moveTheKnight = null;
+    const activeKnight = gameState.currentTurn;
+    if (!moveTheKnight)
+        moveTheKnight = () => {
+            if (tile.state === tileState.VISITED) throw new Error("a knight cannot revisit a spot on the board");
+            activeKnight.move(tile.x, tile.y); 
+        }
     if (isInMoves(tile)) {
         tile.visual.documentId.classList.add("next-move");
 
@@ -28,10 +30,12 @@ export function checkNextMove(tile, returnState) {
 }
 
 function isInMoves(tile) {
+    const activeKnight = gameState.currentTurn;
     for (const [dx, dy] of knightMoveReference) {
-        if (gameState.knight.x + dx === tile.x &&
-            gameState.knight.y + dy === tile.y &&
-            tile.state === tileState.UNVISITED) {
+        if (activeKnight.x + dx === tile.x &&
+            activeKnight.y + dy === tile.y &&
+            tile.state !== tileState.VISITED
+        ) {
 
             return true;
         }

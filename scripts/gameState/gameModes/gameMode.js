@@ -8,16 +8,19 @@ export class GameMode {
 
     #boardSize;
     modifier; //stores a modifier like random start mode
+    #multiplayer; //if the game is a multiplayer game (true / false)
 
     /** @protected */
     buttonHTML;
 
     /** @abstract */
-    constructor(boardSize, modifier = null) {
+    constructor(boardSize, modifier = null, multiplayer = false) {
         if (new.target === GameMode) {
             throw new Error("GameMode is an abstract class");
         }
         this.#boardSize = boardSize;
+
+        this.#multiplayer = multiplayer;
 
         this.modifier = modifier;
         if (this.modifier instanceof RandomStartModifier)
@@ -44,6 +47,10 @@ export class GameMode {
             return this.modifier.startingY;
 
         return 0;
+    }
+
+    get multiplayer() {
+        return this.#multiplayer;
     }
 
     createRelevantWinButtons(containerId) {

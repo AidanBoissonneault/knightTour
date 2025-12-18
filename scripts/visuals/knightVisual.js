@@ -14,9 +14,9 @@ export class VisualKnight {
     #documentElement;
     #imageDocumentElement;
 
-    constructor(x, y) {
-        this.#documentElement = document.getElementById("knight");
-        this.#imageDocumentElement = document.getElementById("knight-image");
+    constructor(x, y, documentId, imageDocumentId) {
+        this.#documentElement = document.getElementById(documentId);
+        this.#imageDocumentElement = document.getElementById(imageDocumentId);
         this.#documentElement.style.setProperty("--x", visualTileDimensions.sizeX * x);
         this.#documentElement.style.setProperty("--y", visualTileDimensions.sizeY * y + visualKnightVerticalOffset);
 
