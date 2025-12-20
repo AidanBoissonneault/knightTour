@@ -1,14 +1,14 @@
 import { GameController } from "../gameState/gameController.js";
 import { loadPageFragment } from "../utilities/loadPageFragment.js";
-
 import { BigBoardMode, GiantBoardMode, StandardMode } from "../gameState/gameModes/standardMode.js";
 import { IncrementMode } from "../gameState/gameModes/incrementMode.js";
 import { LocalMultiplayerMode } from "../gameState/gameModes/localMultiplayerMode.js";
-
 import { RandomStartModifier } from "../gameState/gameModes/RandomStartModifier.js";
-
-
 import { gameControl, makeGameController } from "../main.js";
+import { OnlineHandler } from "../multiplayer/OnlineHandler.js";
+import { OnlineMultiplayerMode } from "../gameState/gameModes/onlineMultiplayerMode.js";
+import { createMultiplayerMenu } from "./multiplayer-menu.js";
+import { addBackToMenuEventListener } from "../eventHandlers/backToMenuButton.js";
 
 
 export async function createMainMenu() {
@@ -21,6 +21,7 @@ await loadPageFragment("title-screen.html", "actual-body");
     const bigBoardButton = document.getElementById("start-bigboard");
     const giantBoardButton = document.getElementById("start-giantboard");
     const localMultiplayerButton = document.getElementById("start-local-multiplayer");
+    const onlineMultiplayerButton = document.getElementById("start-online-multiplayer");
 
     const createGame = async () => {
         await loadPageFragment("game.html", "actual-body");
@@ -60,5 +61,11 @@ await loadPageFragment("title-screen.html", "actual-body");
     localMultiplayerButton.addEventListener("click", () => {
         makeGameController(new GameController(new LocalMultiplayerMode()));
         createGame();
-    })
+    });
+
+    onlineMultiplayerButton.addEventListener("click", async () => {
+        await loadPageFragment("connectScreen.html", "actual-body");
+        makeGameController(new GameController(new OnlineMultiplayerMode(), new OnlineHandler()));
+        createMultiplayerMenu();
+    });
 }

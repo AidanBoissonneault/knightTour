@@ -1,0 +1,29 @@
+<div class="centered-flex-container" id="multiplayer-screen">
+    <div class="inner-container title-screen-container">
+        <h1>ONLINE MULTIPLAYER</h1>
+        <div class="controls control-container">
+            <div class="control-inner-container">
+                <div>
+                    <span>My ID:</span>
+                    <form>
+                        <input type="text" name="myIdInput" id="myId" class="multiplayer-text-field" placeholder="YOUR NAME / LOBBY">
+                    </form>
+                    <button id="create-button" class="menu-button" style="--content: 'CREATE LOBBY';"></button>
+                </div>
+            </div>
+            <div class="control-inner-container">
+                <div>
+                    <span>Remote ID:</span>
+                     <form>
+                        <input type="text" class="multiplayer-text-field" placeholder="PEER ID" id="remoteId">
+                     </form>
+                </div>
+                <button id="connect-button" class="menu-button" style="--content:'CONNECT';"></button>
+            </div>
+        </div>
+        <div class="connection-text">Connection: <span id="connection-status">none</span></div>
+        <button id="start-button" class="menu-button" style="--content:'START GAME';" disabled></button>
+        <button class="menu-button" id="back-to-menu-button" style="--content:'BACK TO MENU';"></button>
+        
+    </div>
+</div>

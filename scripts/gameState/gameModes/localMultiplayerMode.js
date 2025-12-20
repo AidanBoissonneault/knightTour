@@ -3,9 +3,9 @@ import { gameControl } from "../../main.js";
 
 export class LocalMultiplayerMode extends GameMode {
 
-    constructor(modifier = null, boardSize = 8) {
+    constructor(modifier = null, boardSize = 8, isOnline) {
         const MULTIPLAYER_MODE = true;
-        super(boardSize, modifier, MULTIPLAYER_MODE);
+        super(boardSize, modifier, MULTIPLAYER_MODE, isOnline);
         this.buttonHTML = 
                             `<div class="button-container"><button 
                                 id="try-again-button" 

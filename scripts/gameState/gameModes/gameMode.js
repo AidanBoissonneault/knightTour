@@ -10,6 +10,7 @@ export class GameMode {
     #boardSize;
     
     #multiplayer; //if the game is a multiplayer game (true / false)
+    #online; //if the game is online (true / false)
 
     /** @type RandomStartModifier | null*/ 
     modifier; //stores a modifier like random start mode
@@ -18,13 +19,14 @@ export class GameMode {
     buttonHTML;
 
     /** @abstract */
-    constructor(boardSize, modifier = null, multiplayer = false) {
+    constructor(boardSize, modifier = null, multiplayer = false, online = false) {
         if (new.target === GameMode) {
             throw new Error("GameMode is an abstract class");
         }
         this.#boardSize = boardSize;
 
         this.#multiplayer = multiplayer;
+        this.#online = online;
 
         this.modifier = modifier;
         if (this.modifier instanceof RandomStartModifier)
@@ -55,6 +57,10 @@ export class GameMode {
 
     get multiplayer() {
         return this.#multiplayer;
+    }
+
+    get online() {
+        return this.#online;
     }
 
     /**

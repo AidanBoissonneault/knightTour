@@ -8,6 +8,7 @@ export const gameState = {
 
     //multiplayer variables
     isMultiplayer: null,
+    isOnline: null,
     knight2: null,
 
     currentTurn: null,

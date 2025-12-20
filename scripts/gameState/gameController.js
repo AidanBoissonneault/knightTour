@@ -11,19 +11,26 @@ import { MultiplayerKnight } from "../knight/multiplayerKnight.js";
 import { hideOverlayScreen } from "./removeOverlayScreen.js";
 import { setVisualTileDimensions } from "../visuals/tileVisual.js";
 import { setMultiplayerMenu } from "./setMultiplayerMenu.js";
-
+import { OnlineKnight } from "../knight/onlineKnight.js";
+import { loadPageFragment } from "../utilities/loadPageFragment.js";
 
 export class GameController {
 
     #madeEventListeners = false;
     #mode = null;
+    #onlineHandler = null;
 
-    constructor(mode) {
+    constructor(mode, onlineHandler = null) {
         this.#mode = mode;
+        this.#onlineHandler = onlineHandler;
     }
 
     get mode() {
         return this.#mode;
+    }
+
+    get onlineHandler() {
+        return this.#onlineHandler;
     }
 
     startGame() {
@@ -37,6 +44,8 @@ export class GameController {
         gameState.currentTurn = null;
         gameState.winner = null;
 
+        gameState.isOnline = this.#onlineHandler == null ? false : true;
+
         //creates game
         gameState.boardSize = this.#mode.boardSize;
 
@@ -44,29 +53,7 @@ export class GameController {
 
         resetBoard();
 
-        if (!gameState.isMultiplayer) {
-            gameState.knight = new Knight(
-                this.#mode.startingX,
-                this.#mode.startingY
-            );
-        } else {
-            const STARTING_TURN = true;
-            gameState.knight = new MultiplayerKnight(
-                /*this.#mode.startingX*/1,
-                /*this.#mode.startingY*/0,
-                "knight",
-                "knight-image"
-            )
-            gameState.knight2 = new MultiplayerKnight(
-                /*this.#mode.boardSize-1*/6,
-                /*this.#mode.boardSize-1*/7,
-                "knight2",
-                "knight-image2"
-            )
-            gameState.knight.opponent = gameState.knight2;
-            gameState.knight2.opponent = gameState.knight;      
-        }
-        gameState.currentTurn = gameState.knight;
+        createKnights(this.#mode);
         gameState.currentTurn.timerHandler.startVisualTimer();
         
         renderBoard();
@@ -88,4 +75,54 @@ export class GameController {
             removeUndoEventListener(); //removes the keybind for undo
         }
     }
+
+    async handleNetworkEvent(data) {
+        const FROM_NETWORK = true;
+        if (data.type === "move") {
+            const payload = data.payload;
+            gameState.currentTurn.move(payload.posX, payload.posY, FROM_NETWORK);
+        } else if (data.type === "start-game") {
+            await loadPageFragment("game.html", "actual-body");
+            this.startGame();
+        } else if (data.type === "replay") {
+            this.startGame();
+        }
+    }
+}
+
+function createKnights(mode) {
+    if (!gameState.isMultiplayer) {
+        gameState.knight = new Knight(
+            mode.startingX,
+            mode.startingY
+        );
+    } else if (gameState.isOnline) {
+        gameState.knight = new OnlineKnight(
+            1, 0,
+            "knight", "knight-image"
+        )
+        gameState.knight2 = new OnlineKnight(
+            6, 7,
+            "knight2", "knight-image2"
+        )
+        console.log("online knights made");
+    } else if (gameState.isMultiplayer) {
+        gameState.knight = new MultiplayerKnight(
+            /*this.#mode.startingX*/1,
+            /*this.#mode.startingY*/0,
+            "knight",
+            "knight-image"
+        )
+        gameState.knight2 = new MultiplayerKnight(
+            /*this.#mode.boardSize-1*/6,
+            /*this.#mode.boardSize-1*/7,
+            "knight2",
+            "knight-image2"
+        )
+    }
+    if (gameState.isMultiplayer) {
+        gameState.knight.opponent = gameState.knight2;
+        gameState.knight2.opponent = gameState.knight;   
+    }
+    gameState.currentTurn = gameState.knight;
 }
