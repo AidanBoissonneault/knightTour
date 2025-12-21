@@ -6,6 +6,8 @@
     width: 100%;
     margin: 0;
 
+    font-size: 16px;
+
     border:
             4px
             black
@@ -72,6 +74,8 @@
     border-bottom-left-radius: 12px !important;
     border-bottom-right-radius: 12px !important;
 
+    font-size: 16px !important;
+
     border-bottom:
                     4px
                     black
@@ -90,6 +94,7 @@
     .player-info {
         width: 50%;
         padding: 4px;
+        font-size: 12px;
     }
 
     #knight-info {
@@ -109,5 +114,9 @@
         border-top-right-radius: 12px;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 12px;
+    }
+
+    .current-turn-timer {
+        font-size: 28px;
     }
 }
