@@ -16,4 +16,3 @@ export function makeGameController(controller) {
 }
 
 createMainMenu();
-

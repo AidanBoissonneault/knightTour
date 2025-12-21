@@ -13,20 +13,19 @@ export class VisualKnight {
     #position = { x: 0, y: 0 }
     #documentElement;
     #imageDocumentElement;
+    #currentTurnElement;
 
-    #timer;
-    #visualTimerHandler;
-
-    constructor(x, y, documentId, imageDocumentId, timer) {
+    constructor(x, y, documentId, imageDocumentId) {
         this.#documentElement = document.getElementById(documentId);
         this.#imageDocumentElement = document.getElementById(imageDocumentId);
+
+        const currentTurnId = documentId === "knight" ? "current-turn" : "current-turn2";
+        this.#currentTurnElement = document.getElementById(currentTurnId);
         this.#documentElement.style.setProperty("--x", visualTileDimensions.sizeX * x);
         this.#documentElement.style.setProperty("--y", visualTileDimensions.sizeY * y + visualKnightVerticalOffset);
 
         const size = visualTileDimensions.sizeX;
         this.#documentElement.style.setProperty("--size", size);
-
-        this.#timer = timer;
     }
 
     get x() {
@@ -41,8 +40,12 @@ export class VisualKnight {
         return this.#documentElement;
     }
 
-    get visualTimerHandler() {
-        return this.#visualTimerHandler;
+    get currentTurnElement() {
+        return this.#currentTurnElement;
+    }
+
+    toggleCurrentTurn() {
+        this.#currentTurnElement.innerHTML = this.#currentTurnElement.innerHTML === "" ? "Current Turn" : "";
     }
 
     move(x, y, isReversed = false) {

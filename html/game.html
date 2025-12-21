@@ -2,9 +2,20 @@
     <div class="left-box">
         <div class="ui-container">
             <div id="ui-info">
-                <h1 class="text-3d">Knights Tour</h1>
+                <h1 class="text-3d hide-in-mobile">Knights Tour</h1>
                 <div id="expand-box" class="hide-in-mobile"></div>
-                <div id="timer-area"></div>
+                <div id="ui-current-turn-container">
+                    <div id="knight-info" class="player-info">
+                        <div id="name" class="current-turn-name">LIGHT KNIGHT</div>
+                        <div id="current-turn" class="current-turn-turn"></div>
+                        <div id="timer-area" class="current-turn-timer"></div>
+                    </div>
+                    <div id="knight-info2" class="player-info">
+                        <div id="name2" class="current-turn-name">DARK KNIGHT</div>
+                        <div id="current-turn2" class="current-turn-turn"></div>
+                        <div id="timer-area2" class="current-turn-timer"></div>
+                    </div>
+                </div>
             </div>
 
             <div id="ui-buttons">

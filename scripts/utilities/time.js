@@ -108,12 +108,13 @@ export class CountdownTimer extends Timer {
 export class TimerHandler {
     #showVisual;
     #timer;
-    #documentElement = document.getElementById("timer-area");
+    #documentElement;
 
-    constructor(timer, autoStartTimer = false) {
+    constructor(timer, documentId, autoStartTimer = false) {
         if (!(timer instanceof Timer)) throw new Error("timer must be made from the Timer class");
         this.#timer = timer;
         this.#showVisual = false;
+        this.#documentElement = document.getElementById(documentId);
 
         if (autoStartTimer)
             this.startVisualTimer();

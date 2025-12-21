@@ -13,6 +13,7 @@ import { setVisualTileDimensions } from "../visuals/tileVisual.js";
 import { setMultiplayerMenu } from "./setMultiplayerMenu.js";
 import { OnlineKnight } from "../knight/onlineKnight.js";
 import { loadPageFragment } from "../utilities/loadPageFragment.js";
+import { stopTimerHandlers } from "../knight/stopTimerHandlers.js";
 
 export class GameController {
 
@@ -73,6 +74,14 @@ export class GameController {
         if (gameState.isMultiplayer) {
             setMultiplayerMenu();
             removeUndoEventListener(); //removes the keybind for undo
+            document.getElementById("knight-info").classList.remove("only-player");
+            document.getElementById("knight-info2").classList.remove("no-display");
+            document.getElementById("current-turn").innerHTML = "Current Turn";
+            document.getElementById("current-turn2").innerHTML = "";
+            document.getElementById("timer-area2").innerHTML = "3:00";
+        } else {
+            document.getElementById("knight-info2").classList.add("no-display");
+            document.getElementById("knight-info").classList.add("only-player");
         }
     }
 
@@ -85,6 +94,7 @@ export class GameController {
             await loadPageFragment("game.html", "actual-body");
             this.startGame();
         } else if (data.type === "replay") {
+            stopTimerHandlers();
             this.startGame();
         }
     }

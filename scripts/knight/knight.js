@@ -23,7 +23,9 @@ export class Knight {
         this.#timer = timer;
 
         this.#visual = new VisualKnight(x, y, documentId, imageDocumentId, this.#timer);
-        this.#timerHandler = new TimerHandler(this.#timer);
+
+        const timerId = documentId === "knight" ? "timer-area" : "timer-area2";
+        this.#timerHandler = new TimerHandler(this.#timer, timerId);
     }
 
     get x() {

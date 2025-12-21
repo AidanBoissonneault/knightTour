@@ -40,5 +40,8 @@ export class MultiplayerKnight extends Knight {
         } else {
             this.opponent.timerHandler.startVisualTimer();
         }
+
+        this.visual.toggleCurrentTurn();
+        this.opponent.visual.toggleCurrentTurn();
     }
 }
