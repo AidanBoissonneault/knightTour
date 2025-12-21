@@ -95,6 +95,36 @@
         width: 50%;
         padding: 4px;
         font-size: 12px;
+
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    .player-info.only-player {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .current-turn-name {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+
+        text-align: center;
+    }
+
+    .current-turn-turn {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+
+        text-align: center;
+    }
+
+    .current-turn-timer {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+
+        font-size: 28px;
+        padding: 4px;
     }
 
     #knight-info {
@@ -114,9 +144,5 @@
         border-top-right-radius: 12px;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 12px;
-    }
-
-    .current-turn-timer {
-        font-size: 28px;
     }
 }
