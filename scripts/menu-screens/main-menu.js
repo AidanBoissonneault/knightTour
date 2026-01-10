@@ -22,6 +22,7 @@ await loadPageFragment("title-screen.html", "actual-body");
     const giantBoardButton = document.getElementById("start-giantboard");
     const localMultiplayerButton = document.getElementById("start-local-multiplayer");
     const onlineMultiplayerButton = document.getElementById("start-online-multiplayer");
+    const rulesButton = document.getElementById("start-rules");
 
     const createGame = async () => {
         await loadPageFragment("game.html", "actual-body");
@@ -45,7 +46,8 @@ await loadPageFragment("title-screen.html", "actual-body");
         makeGameController(new GameController(new IncrementMode()));
         createGame();
     });
-
+ 
+    /* removed from main menu
     if (!bigBoardButton) throw new Error("start big board game button must exist");
     bigBoardButton.addEventListener("click", () => {
         makeGameController(new GameController(new BigBoardMode()));
@@ -56,16 +58,24 @@ await loadPageFragment("title-screen.html", "actual-body");
     giantBoardButton.addEventListener("click", () => {
         makeGameController(new GameController(new GiantBoardMode(new RandomStartModifier)));
         createGame();
-    });
+    });*/
 
+    if (!localMultiplayerButton) throw new Error("start local multiplayer button must exist");
     localMultiplayerButton.addEventListener("click", () => {
         makeGameController(new GameController(new LocalMultiplayerMode()));
         createGame();
     });
 
+    if (!onlineMultiplayerButton) throw new Error("start online multiplayer button must exist");
     onlineMultiplayerButton.addEventListener("click", async () => {
         await loadPageFragment("connectScreen.html", "actual-body");
         makeGameController(new GameController(new OnlineMultiplayerMode(), new OnlineHandler()));
         createMultiplayerMenu();
+    });
+
+    if (!rulesButton) throw new Error("rules button must exist");
+    rulesButton.addEventListener("click", async () => {
+        await loadPageFragment("rules.html", "actual-body");
+        addBackToMenuEventListener();
     });
 }

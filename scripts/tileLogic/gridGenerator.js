@@ -1,5 +1,6 @@
 import { Tile } from "./tile.js";
 
+/* old version
 export function generateMap(boardSize) {
 
     let tempMap = [];
@@ -12,4 +13,10 @@ export function generateMap(boardSize) {
         tempMap.push(tempColumn);
     }
     return tempMap;
+} */
+
+export function generateMap(boardSize) {
+    return Array.from({ length: boardSize }, (_, i) =>
+        Array.from({ length: boardSize }, (_, j) => new Tile(i, j))
+    );
 }

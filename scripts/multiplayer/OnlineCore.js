@@ -14,6 +14,9 @@ export class OnlineCore {
     };
 
     on(event, cb) {
+        if (!this.#listeners[event]) {
+            throw new Error(`Unknown event: ${event}`);
+        }
         this.#listeners[event].push(cb);
     }
 

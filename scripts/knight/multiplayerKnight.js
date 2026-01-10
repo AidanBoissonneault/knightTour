@@ -20,17 +20,23 @@ export class MultiplayerKnight extends Knight {
         return this.#opponent;
     }
 
-    /** @override */
+    /** 
+     * @override 
+     * adds back and forth move validation on top of a standard knight.move()
+     * @param {number} x must be less than or equal to board size.
+     * @param {number} y must be less than or equal to board size.
+    */
     move(x, y) {
         if (gameState.currentTurn == this.#opponent) return; //throw new Error("It must be your turn to play");
         if (this.#opponent == null) throw new Error("The opponent must be set before making a move");
         super.move(x, y);
         gameState.currentTurn = this.#opponent;
 
+        //visualize the move after a move was completed.
+        renderTiles();
+
         //make the current timer the opponents timer and stop your own
         this.timerHandler.stopVisualTimer();
-
-        renderTiles();
 
         if (this.x === this.#opponent.x &&
             this.y === this.#opponent.y

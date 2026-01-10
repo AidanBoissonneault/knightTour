@@ -2,7 +2,6 @@
     content: "";
     position: absolute;
 
-    /* position */
     bottom: 0%;
     left: 50%;
 
@@ -11,15 +10,12 @@
 
     transform: translateX(-50%);
 
-    /* visual */
     background: rgba(0, 0, 0, 0.35);
     border-radius: 50%;
     filter: blur(7px);
 
-    /* layering */
     z-index: 999001;
 
-    /* smooth transitions */
     transition:
         transform 0.35s ease,
         opacity 0.35s ease;
