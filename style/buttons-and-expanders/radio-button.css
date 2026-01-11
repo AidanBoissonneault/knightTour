@@ -1,0 +1,119 @@
+/* hide radio */
+input[type="radio"] {
+    display: none;
+}
+
+/* base button */
+.menu-radio {
+    position: relative;
+    display: block;
+
+    width: 90%;
+    height: 50px;
+    margin: 10px;
+
+    border-radius: 12px;
+    background-color: #ccc;
+
+    border: 4px solid black;
+
+    box-shadow:
+        4px 4px 3px #22222220,
+        -1px -1px 3px #ffffff10;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.20s ease,
+        box-shadow 0.25s ease;
+}
+
+/* hover */
+.menu-radio:hover {
+    background-color: #bbb;
+
+    box-shadow:
+        5px 5px 3px #22222235,
+        -2px -2px 3px #ffffff15;
+}
+
+/* pressed via click */
+.menu-radio:active {
+    box-shadow:
+        1px 1px 1px #22222210,
+        -1px -1px 3px #ffffff05;
+}
+
+/* inner rails */
+.menu-radio::before {
+    position: absolute;
+    content: "";
+    width: calc(100% - 24px);
+    height: 100%;
+    left: 10px;
+    top: 0;
+
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-radius: 2px;
+
+    background-color: #33333310;
+}
+
+/* raised face */
+.menu-radio::after {
+    position: absolute;
+    inset: 0;
+
+    content: var(--content);
+
+    font-family: endless-boss-battle;
+    font-size: 20px;
+    padding: 15px;
+
+    background-color: #eee;
+    border-radius: 12px;
+
+    text-shadow:
+        -1px -1px 3px #ffffff10,
+        2px 2px 1px #22222220;
+
+    transform: translateY(-10px);
+
+    transition:
+        transform 0.075s ease,
+        background-color 0.1s ease,
+        color 0.2s ease;
+}
+
+/* hover face */
+.menu-radio:hover::after {
+    background-color: #fff;
+
+    text-shadow:
+        -1px -1px 3px #ffffff10,
+        2px 2px 1px #22222230;
+
+    transform: translateY(-12px);
+}
+
+/* CLICKED but not selected */
+.menu-radio:active::after {
+    background-color: #ddd;
+    text-shadow: none;
+    transform: translateY(-1px);
+}
+
+/* SELECTED STATE (radio checked) */
+input[type="radio"]:checked + .menu-radio {
+    background-color: #aad8b3;
+    box-shadow:
+        1px 1px 1px #22222210,
+        -1px -1px 3px #ffffff05;
+}
+
+input[type="radio"]:checked + .menu-radio::after {
+    background-color: /*#ddd*/#bdf2c8;
+    text-shadow: none;
+    transform: translateY(-1px);
+}

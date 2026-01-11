@@ -1,3 +1,9 @@
 :root {
     --ui__blue: #96dcf8;
+    --ui__dark-blue: #6da2b7;
+    --ui__highlight__dark_blue: #7bb3c9;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
 }

@@ -14,6 +14,8 @@ import { setMultiplayerMenu } from "./setMultiplayerMenu.js";
 import { OnlineKnight } from "../knight/onlineKnight.js";
 import { loadPageFragment } from "../utilities/loadPageFragment.js";
 import { stopTimerHandlers } from "../knight/stopTimerHandlers.js";
+import { OnlineMultiplayerMode } from "./gameModes/onlineMultiplayerMode.js";
+import { OnlineHandler } from "../multiplayer/OnlineHandler.js";
 
 export class GameController {
 
@@ -24,6 +26,8 @@ export class GameController {
     constructor(mode, onlineHandler = null) {
         this.#mode = mode;
         this.#onlineHandler = onlineHandler;
+        if (mode instanceof OnlineMultiplayerMode && onlineHandler == null)
+            this.#onlineHandler = new OnlineHandler();
     }
 
     get mode() {

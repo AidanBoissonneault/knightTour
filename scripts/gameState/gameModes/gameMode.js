@@ -13,7 +13,7 @@ export class GameMode {
     #online; //if the game is online (true / false)
 
     /** @type RandomStartModifier | null*/ 
-    modifier; //stores a modifier like random start mode
+    #modifier; //stores a modifier like random start mode
 
     /** @protected @type string */
     buttonHTML;
@@ -28,9 +28,19 @@ export class GameMode {
         this.#multiplayer = multiplayer;
         this.#online = online;
 
-        this.modifier = modifier;
-        if (this.modifier instanceof RandomStartModifier)
-            this.modifier.boardSize = boardSize;
+        this.#modifier = modifier;
+        if (this.#modifier instanceof RandomStartModifier)
+            this.#modifier.boardSize = boardSize;
+    }
+
+    get modifier() {
+        return this.#modifier;
+    }
+
+    set modifier(modifier) {
+        this.#modifier = modifier;
+        if (this.#modifier instanceof RandomStartModifier)
+            this.#modifier.boardSize = this.#boardSize;
     }
 
     get boardSize() {
@@ -42,15 +52,15 @@ export class GameMode {
     }
 
     get startingX() {
-        if (this.modifier instanceof RandomStartModifier)
-            return this.modifier.startingX;
+        if (this.#modifier instanceof RandomStartModifier)
+            return this.#modifier.startingX;
 
         return 0;
     }
 
     get startingY() {
-        if (this.modifier instanceof RandomStartModifier)
-            return this.modifier.startingY;
+        if (this.#modifier instanceof RandomStartModifier)
+            return this.#modifier.startingY;
 
         return 0;
     }

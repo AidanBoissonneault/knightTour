@@ -1,13 +1,73 @@
-<div class="centered-flex-container">
-        <div class="inner-container title-screen-container">
-                <h1 class="title-text text-3d">EIGHTFOLD</h1>
+<div class="title-screen-mobile__dark-background hide-in-desktop"></div>
 
-                <div><button class="menu-button" id="start-regular" style="--content:'STANDARD';">STANDARD</button></div>
-                <div><button class="menu-button" id="start-random" style="--content:'RANDOM START';">RANDOM START</button></div>
-                <div><button class="menu-button" id="start-increment" style="--content:'INCREMENT';">INCREMENT</button></div>
-                <div><button class="menu-button" id="start-local-multiplayer" style="--content:'LOCAL MULTIPLAYER';">LOCAL MULTIPLAYER</button></div>
-                <div><button class="menu-button" id="start-online-multiplayer" style="--content:'ONLINE MULTIPLAYER';">ONLINE MULTIPLAYER</button></div>
-                <div><button class="menu-button hide-in-desktop" id="start-rules" style="--content:'RULES';">RULES</button></div>
-                <div><button class="menu-button" id="settings-button" style="--content:'SETTINGS';"disabled>SETTINGS</button></div>
+<div class="centered-flex-container">
+        <div class="inner-container title-screen-container" id="selection-screen">
+                <h1 class="title-text text-3d hide-in-desktop">EIGHTFOLD</h1>
+
+                <div id="title-screen-grid">
+                        <div id="title-screen-title" class="title-screen-box centered-flex-container hide-in-mobile">
+                                <h1 class="title-text text-3d">EIGHTFOLD</h1>
+                        </div>
+                        <div id="title-screen-rules" class="title-screen-box hide-in-mobile">
+                                <h2 class="text-3d" style="margin-top: 32px;">RULES</h2>
+                                <div id="title-screen-rules__inner" class="title-screen-box__inner">
+
+                                </div>
+                        </div>
+                        <div id="title-screen-game" class="title-screen-box">
+
+                                <h2 class="text-3d" id="title-tour">KNIGHTS TOUR</h2>
+
+                                <div class="centered-flex-container vertical-flex-container title-screen-box__inner" id="selection-box">
+
+                                        <h3 class="text-3d">MODE</h3>
+
+                                        <form class="title-screen__select-mode">
+                                                <input type="radio" name="mode" id="mode-standard" checked>
+                                                <label for="mode-standard" class="menu-radio" style="--content:'STANDARD';">STANDARD</label>
+
+                                                <input type="radio" name="mode" id="mode-increment">
+                                                <label for="mode-increment" class="menu-radio" style="--content:'INCREMENT';">INCREMENT</label>
+
+                                                <input type="radio" name="mode" id="mode-large">
+                                                <label for="mode-large" class="menu-radio" style="--content:'LARGE';">LARGE</label>
+
+                                                <input type="radio" name="mode" id="mode-giant">
+                                                <label for="mode-giant" class="menu-radio" style="--content: 'GIANT';">GIANT</label>
+                                        </form>
+
+                                        <h3 class="text-3d">MODIFIER</h3>
+
+                                        <form class="title-screen__select-modifier">
+                                                <div class="centered-flex-container">
+                                                        <input type="radio" name="modifier" id="modifier-none" class="no-display" checked>
+                                                        <label for="modifier-none" class="menu-radio" style="--content:'NONE';">NONE</label>
+                                                </div>
+                                                
+                                                <div class="centered-flex-container">
+                                                        <input type="radio" name="modifier" id="modifier-random" class="no-display">
+                                                        <label for="modifier-random" class="menu-radio" style="--content:'RANDOM';">RANDOM</label>
+                                                </div>
+                                        </form>
+
+                                        <div style="width: 50%;">
+                                                <button class="menu-button" id="start-game" style="--content:'START'">START</button>
+                                        </div>
+                                </div>
+                        </div>
+
+                        <div id="title-screen-multiplayer" class="title-screen-box centered-flex-container vertical-flex-container">
+                                <h2 class="text-3d">MULTIPLAYER</h2>
+                                <div class="title-screen-box__inner">
+                                        <div><button class="menu-button" id="start-local-multiplayer" style="--content:'LOCAL';">LOCAL</button></div>
+                                        <div><button class="menu-button" id="start-online-multiplayer" style="--content:'ONLINE';">ONLINE</button></div>
+                                </div> 
+                        </div>
+
+                        <div id="title-screen-extras" class="centered-flex-container vertical-flex-container title-screen-box">
+                                <button class="menu-button hide-in-desktop" id="start-rules" style="--content:'RULES';">RULES</button>
+                                <button class="menu-button" id="settings-button" style="--content:'SETTINGS';"disabled>SETTINGS</button>
+                        </div>
+                </div>          
         </div>
 </div>

@@ -10,6 +10,13 @@
     width: 300px;
 }
 
+.relative-container {
+    position: relative;
+}
+
+.absolute-container {
+    position: absolute;
+}
 
 .centered-flex-container {
     display: flex;
@@ -17,6 +24,11 @@
     align-items: center;
     height: 100%;
     width: 100%;
+}
+
+.vertical-flex-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .inner-container {
@@ -27,4 +39,8 @@
 
 .final-screen-container {
     width: 200px;
+}
+
+.no-scroll-container {
+    overflow: hidden;
 }

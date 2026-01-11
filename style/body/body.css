@@ -10,3 +10,14 @@ html, body {
 
     overflow: hidden;
 }
+
+h1, h2, h3 {
+    margin: 2px;
+}
+
+/* mobile */
+@media (max-width: 768px) {
+    body {
+        overflow: scroll;
+    }
+}

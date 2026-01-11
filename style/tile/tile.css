@@ -13,6 +13,8 @@
 
     transition:
                 transform 0.15s ease;
+    
+    box-sizing: content-box !important;
 }
 
 .tile::before {
@@ -28,6 +30,8 @@
     background: var(--colorSchemeSecondary);
 
     border: 1px black solid;
+
+    box-sizing: content-box !important;
 }
 
 .tile:hover {
