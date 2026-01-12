@@ -108,7 +108,7 @@
 }
 
 #selection-box {
-    height: 80%;
+    height: 65%;
     width: 90%;
     margin-left: 5%;
 
@@ -127,8 +127,8 @@
 
 .title-screen__select-mode {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     width: 100%;
 }
 

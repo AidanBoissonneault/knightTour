@@ -1,5 +1,6 @@
 import { GameMode } from "./gameMode.js";
 import { gameControl } from "../../main.js";
+import { RandomStartModifier } from "./RandomStartModifier.js";
 
 export class IncrementMode extends GameMode {
 
@@ -23,6 +24,8 @@ export class IncrementMode extends GameMode {
 
     #incrementBoardSize() {
         this._boardSize = this.boardSize + 1;
+        if (this.modifier instanceof RandomStartModifier)
+            this.modifier.boardSize = this.boardSize;
     }
 
     /** @override*/
@@ -43,7 +46,5 @@ export class IncrementMode extends GameMode {
             this.#incrementBoardSize();
             gameControl.startGame();
         });
-
-
     }
 }
