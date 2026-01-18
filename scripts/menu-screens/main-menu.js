@@ -9,12 +9,22 @@ import { OnlineHandler } from "../multiplayer/OnlineHandler.js";
 import { OnlineMultiplayerMode } from "../gameState/gameModes/onlineMultiplayerMode.js";
 import { createMultiplayerMenu } from "./multiplayer-menu.js";
 import { addBackToMenuEventListener } from "../eventHandlers/backToMenuButton.js";
+import { getKnightsTourText, getMultiplayerText } from "../visuals/ruleBoxText.js";
 
 export async function createMainMenu() {
     await loadPageFragment("title-screen.html", "actual-body");
 
     var mode = new StandardMode();
     var modifier = null;
+    var extraText = "";
+    var extraModifierText = "";
+
+    const rulesText = document.getElementById("rules_main-text");
+
+    const updateRulesKnightTourText = () => {
+        rulesText.innerHTML = getKnightsTourText(mode.boardSize, extraText, extraModifierText);
+    }
+    updateRulesKnightTourText();
 
     const createGame = async () => {
         makeGameController(new GameController(mode));
@@ -27,24 +37,36 @@ export async function createMainMenu() {
     if (!modeStandardRadio) console.log("mode-standard must exist to create an event listener");
     modeStandardRadio.addEventListener("click", () => {
         mode = new StandardMode(modifier);
+        extraText = "";
+
+        updateRulesKnightTourText();
     });
 
     const modeIncrementRadio = document.getElementById("mode-increment");
     if(!modeIncrementRadio) console.log("mode-increment must exist to create an evenet listener");
     modeIncrementRadio.addEventListener("click", () => {
         mode = new IncrementMode(modifier);
+        extraText = "Board size increases by 1x1 every successful tour.";
+
+        updateRulesKnightTourText();
     });
 
     const modeLargeRadio = document.getElementById("mode-large");
     if(!modeLargeRadio) console.log("mode-large must exist to create an event listener");
     modeLargeRadio.addEventListener("click", () => {
         mode = new BigBoardMode(modifier);
+        extraText = "";
+
+        updateRulesKnightTourText();
     });
 
     const modeGiantRadio = document.getElementById("mode-giant");
     if(!modeGiantRadio) console.log("mode-giant must exist to create an event listener");
     modeGiantRadio.addEventListener("click", () => {
         mode = new GiantBoardMode(modifier);
+        extraText = "";
+
+        updateRulesKnightTourText();
     });
 
     
@@ -55,6 +77,9 @@ export async function createMainMenu() {
     modifierNoneRadio.addEventListener("click", () => {
         modifier = null;
         mode.modifier = null;
+        extraModifierText = "";
+
+        updateRulesKnightTourText();
     });
 
     const modifierRandomRadio = document.getElementById("modifier-random");
@@ -62,6 +87,9 @@ export async function createMainMenu() {
     modifierRandomRadio.addEventListener("click", () => {
         modifier = new RandomStartModifier();
         mode.modifier = new RandomStartModifier();
+        extraModifierText = "Start at a random position.";
+
+        updateRulesKnightTourText();
     });
 
     //start game
@@ -92,4 +120,13 @@ export async function createMainMenu() {
         await loadPageFragment("rules.html", "actual-body");
         addBackToMenuEventListener();
     });
+
+
+    //rule box updates
+    const multiplayerBox = document.getElementById("title-screen-multiplayer");
+    if (!multiplayerBox) console.log("multiplayer div must exist to create event listeners");
+    multiplayerBox.addEventListener("mouseenter", () => {
+        rulesText.innerHTML = getMultiplayerText();  
+    })
+    multiplayerBox.addEventListener("mouseleave", updateRulesKnightTourText);
 }

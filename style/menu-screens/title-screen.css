@@ -23,7 +23,7 @@
 }
 
 .title-text {
-    font-size: 56px;
+    font-size: 48px;
     pointer-events: none;
     margin: 0;
 }
@@ -100,6 +100,8 @@
     height: 75%;
     left: 2%;
     bottom: 2%;
+
+    padding: 16px;
 }
 
 #title-screen-game {
